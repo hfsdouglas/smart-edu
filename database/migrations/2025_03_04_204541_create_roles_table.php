@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('role');
+            $table->timestamp('created_at')->default(now());
+            $table->timestamp('updated_at')->default(now());
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('roles');
     }
 };

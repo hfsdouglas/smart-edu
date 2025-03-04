@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->foreign('school_id')->references('id')->on('schools');
             $table->foreign('role_id')->references('id')->on('roles');
+            $table->timestamp('created_at')->default(now());
+            $table->timestamp('updated_at')->default(now());
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles');
+        Schema::dropIfExists('employees');
     }
 };
