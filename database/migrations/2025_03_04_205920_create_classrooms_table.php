@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('classroom');
-            $table->timestamp('created_at')->default(now());
-            $table->timestamp('updated_at')->default(now());
+
+            $table->timestamps();
         });
     }
 

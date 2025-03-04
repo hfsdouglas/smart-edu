@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('professors', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->uuid('employee_id');
+
             $table->foreign('employee_id')->references('id')->on('employees');
-            $table->timestamp('created_at')->default(now());
-            $table->timestamp('updated_at')->default(now());
+            
+            $table->timestamps();
         });
     }
 

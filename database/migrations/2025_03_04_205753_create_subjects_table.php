@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('subject');
+            $table->uuid('professor_id');
+
             $table->foreign('professor_id')->references('id')->on('professors');
-            $table->timestamp('created_at')->default(now());
-            $table->timestamp('updated_at')->default(now());
+            
+            $table->timestamps();
         });
     }
 

@@ -1,16 +1,15 @@
-version: '3.7'
-
 services:
-  postgres:
-    image: bitnami/postgresql:latest
-    ports:
-      - '5432:5432'
-    environment:
-      - POSTGRES_USER=docker
-      - POSTGRES_PASSWORD=docker
-      - POSTGRES_DB=smartedu
-    volumes:
-      - polls_pg_data:/bitnami/postgresql
-
-volumes:
-  polls_pg_data:
+    mysql:
+        image: mysql:8.4
+        restart: always
+        container_name: smartedu
+        environment: 
+            - MYSQL_DATABASE=smartedu
+            - MYSQL_ROOT_PASSWORD=docker
+        ports: 
+            - '3306:3306'
+        networks:
+            - smartedu-network
+networks:
+    smartedu-network:
+        driver: bridge

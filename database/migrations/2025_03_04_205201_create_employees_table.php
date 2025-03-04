@@ -14,10 +14,14 @@ return new class extends Migration
         Schema::create('employees', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
+
+            $table->uuid('school_id');
+            $table->uuid('role_id');
+
+            $table->timestamps();
+
             $table->foreign('school_id')->references('id')->on('schools');
             $table->foreign('role_id')->references('id')->on('roles');
-            $table->timestamp('created_at')->default(now());
-            $table->timestamp('updated_at')->default(now());
         });
     }
 

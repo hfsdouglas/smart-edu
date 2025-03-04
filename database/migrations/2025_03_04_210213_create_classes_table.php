@@ -13,12 +13,15 @@ return new class extends Migration
     {
         Schema::create('classes', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreign('subject_id')->references('id')->on('subjects');
-            $table->foreign('classroom_id')->references('id')->on('classrooms');
+            $table->uuid('subject_id');
+            $table->uuid('classroom_id');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
-            $table->timestamp('created_at')->default(now());
-            $table->timestamp('updated_at')->default(now());
+
+            $table->timestamps();
+
+            $table->foreign('subject_id')->references('id')->on('subjects');
+            $table->foreign('classroom_id')->references('id')->on('classrooms');
         });
     }
 
