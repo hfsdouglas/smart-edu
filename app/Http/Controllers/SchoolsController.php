@@ -23,7 +23,7 @@ class SchoolsController
         if (!$name) {
             return response()->json([
                 'message' => 'Digite o nome para criar uma escola!',
-            ])->setStatusCode(400);
+            ], 400);
         }
 
         $school = Schools::create(['name' => $name]);
@@ -40,9 +40,35 @@ class SchoolsController
         if (!$school) {
             return response()->json([
                 'message' => 'Escola não encontrada!',
-            ])->setStatusCode(404);
+            ], 404);
         }
 
         return response()->json($school);
+    }
+
+    public function update(Request $request, string $id) {
+        $school = Schools::find($id);
+
+        if (!$school) {
+            return response()->json([
+                'message' => 'Escola não encontrada!',
+            ], 404);
+        }
+        
+        $name = $request->input('name');
+
+        if (!$name) {
+            return response()->json([
+                'message' => 'Digite o nome que deseja atualizar!',
+            ], 400);
+        }
+
+        $school->name = $name;
+        $school->save();
+
+        return response()->json([
+            'message' => 'A escola foi atualizada com sucesso!',
+            'escola' => $school
+        ]);
     }
 }
