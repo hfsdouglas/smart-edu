@@ -6,6 +6,7 @@ services:
         environment: 
             - MYSQL_DATABASE=smartedu
             - MYSQL_ROOT_PASSWORD=docker
+            - TZ=America/Sao_Paulo
         ports: 
             - '3306:3306'
         networks:
