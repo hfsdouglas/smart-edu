@@ -11,3 +11,6 @@ Route::put('/schools/{id}', [SchoolsController::class, 'update']);
 
 Route::post('/roles', [RolesController::class, 'create']);
 Route::get('/roles', [RolesController::class, 'index']);
+Route::put('/roles/{id}', [RolesController::class, 'update']);
+Route::delete('/roles/{id}', [RolesController::class, 'delete']);
+Route::get('/roles/{id}', [RolesController::class, 'show']);

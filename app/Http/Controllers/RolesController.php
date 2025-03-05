@@ -52,4 +52,58 @@ class RolesController
             'role' => $role
         ]);
     }
+
+    public function update(Request $request, string $id) {
+        $role = $request->input('role');
+
+        if (!$role) {
+            return response()->json([
+                'message' => 'Nome do cargo vazio!'
+            ], 400);
+        }
+
+        $result = Roles::find($id);
+
+        if (!$result) {
+            return response()->json([
+                'message' => 'Cargo não encontrado!'
+            ], 404);
+        }
+
+        $result->role = $role;
+        $result->save();
+
+        return response()->json([
+            'message' => 'Cargo atualizado com sucesso!',
+            'role' => $result
+        ]);
+    }
+
+    public function delete(string $id) {
+        $role = Roles::find($id);
+
+        if (!$role) {
+            return response()->json([
+                'message' => 'Cargo não encontrado!'
+            ], 404);
+        }
+
+        $role->delete();
+
+        return response()->json([
+            'message' => 'Cargo deletado com sucesso!',
+        ]);
+    }
+
+    public function show($id) {
+        $roles = Roles::find($id);
+
+        if (!$roles) {
+            return response()->json([
+                'message' => 'Escola não encontrada!',
+            ], 404);
+        }
+
+        return response()->json($roles);
+    }
 }
