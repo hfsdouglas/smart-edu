@@ -9,3 +9,4 @@ Route::get('/schools/{id}', [SchoolsController::class, 'show']);
 Route::post('/schools', [SchoolsController::class, 'create']);
 
 Route::post('/roles', [RolesController::class, 'create']);
+Route::get('/roles', [RolesController::class, 'index']);
