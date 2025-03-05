@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RolesResource;
 use App\Models\Roles;
 use App\Models\Schools;
 use Illuminate\Http\Request;
@@ -9,10 +10,11 @@ use Illuminate\Http\Request;
 class RolesController
 {
     public function index() {
-        $roles = Roles::all();
-        
+        $roles = Roles::with('schools')->get();
+        $formatted_roles = RolesResource::collection($roles);
+
         return response()->json([
-            'roles' => $roles
+            'roles' => $formatted_roles
         ]);
     }
     
