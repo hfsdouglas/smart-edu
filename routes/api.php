@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeesController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\SchoolsController;
 use Illuminate\Support\Facades\Route;
@@ -14,3 +15,8 @@ Route::get('/roles', [RolesController::class, 'index']);
 Route::put('/roles/{id}', [RolesController::class, 'update']);
 Route::delete('/roles/{id}', [RolesController::class, 'delete']);
 Route::get('/roles/{id}', [RolesController::class, 'show']);
+
+Route::get('/employees', [EmployeesController::class, 'index']);
+Route::post('/employees', [EmployeesController::class, 'create']);
+Route::put('/employees/{id}', [EmployeesController::class, 'update']);
+Route::get('/employees/{id}', [EmployeesController::class, 'show']);
