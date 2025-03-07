@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Roles extends Model
 {
@@ -18,5 +18,14 @@ class Roles extends Model
 
     public function schools(): BelongsTo {
         return $this->belongsTo(Schools::class, 'school_id');
+    }
+
+    public function employees(): BelongsToMany {
+        return $this->belongsToMany(
+            Employees::class, 
+            'employee_roles',
+            'role_id', 
+            'employee_id',
+        );
     }
 }
