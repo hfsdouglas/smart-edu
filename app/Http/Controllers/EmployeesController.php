@@ -24,6 +24,7 @@ class EmployeesController
         $name = $request->input('name');
         $role_id = $request->input('role_id');
         $school_id = $request->input('school_id');
+        $is_professor = $request->input('is_professor');
 
         if (!$school_id) {
             return response()->json([
@@ -69,6 +70,7 @@ class EmployeesController
             'name' => $name,
             'school_id' => $school->id,
             'role_id' => $role->id,
+            'is_professor' => $is_professor,
         ]);
 
         return response()->json([
